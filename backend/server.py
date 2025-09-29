@@ -1,4 +1,5 @@
 from fastapi import FastAPI, APIRouter, UploadFile, File, HTTPException, Form
+from bson import ObjectId
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -244,6 +245,8 @@ async def create_pdf_export(content: str, title: str) -> str:
         raise HTTPException(status_code=500, detail=f"Errore nella creazione del PDF: {str(e)}")
 
 # API Routes
+
+
 @api_router.post("/upload", response_model=dict)
 async def upload_document(file: UploadFile = File(...)):
     try:
@@ -517,6 +520,34 @@ async def get_document(document_id: str):
     except Exception as e:
         logging.error(f"Get document error: {e}")
         raise HTTPException(status_code=500, detail=f"Errore nel recupero documento: {str(e)}")
+
+# --- NUOVO ENDPOINT DELETE ---
+@api_router.delete("/document/{document_id}")
+async def delete_document(document_id: str):
+    """
+    Elimina un documento dal database utilizzando il suo ID (stringa UUID).
+    """
+    try:
+        # Trova e rimuove il documento usando il campo "id"
+        result = await db.documents.delete_one({"id": document_id})
+
+        # Controlla se l'eliminazione ha avuto successo
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Documento non trovato.")
+        
+        # Ritorna una risposta di successo
+        return {"message": f"Documento {document_id} eliminato con successo."}
+
+    except HTTPException:
+        # Rilancia le eccezioni HTTP come 404
+        raise
+    except Exception as e:
+        # Gestisce altri errori imprevisti
+        logging.error(f"Error deleting document {document_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Errore durante l'eliminazione: {str(e)}")
+
+# --- FINE NUOVO ENDPOINT DELETE ---
+
 
 @api_router.get("/")
 async def root():

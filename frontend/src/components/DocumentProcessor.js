@@ -222,6 +222,33 @@ const DocumentProcessor = ({ darkMode, setDarkMode, apiEndpoint }) => {
     }
   };
 
+  const deleteDocument = async (documentId, filename, e) => {
+    // Blocca la propagazione per evitare che venga chiamato selectDocument
+    e.stopPropagation();
+
+    if (!window.confirm(`Sei sicuro di voler eliminare il documento "${filename}"?`)) {
+        return;
+    }
+
+    try {
+        await axios.delete(`${apiEndpoint}/document/${documentId}`);
+
+        toast.success(`Documento "${filename}" eliminato con successo.`);
+        
+        // 1. Aggiorna la lista dei documenti
+        loadDocuments();
+
+        // 2. Se stiamo visualizzando il documento eliminato, chiudi la visualizzazione
+        if (currentDocument?.id === documentId) {
+            setCurrentDocument(null);
+        }
+
+    } catch (error) {
+        const errorMessage = error.response?.data?.detail || 'Errore durante l\'eliminazione del documento';
+        toast.error(errorMessage);
+    }
+};
+
   return (
     <div className="min-h-screen p-4 md:p-8">
       {/* Header */}
@@ -291,9 +318,19 @@ const DocumentProcessor = ({ darkMode, setDarkMode, apiEndpoint }) => {
                         )}
                       </div>
                     </div>
-                    <p className="text-xs text-zinc-600 dark:text-zinc-400">
-                      {(doc.file_size / 1024 / 1024).toFixed(1)} MB
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs text-zinc-600 dark:text-zinc-400">
+                        {(doc.file_size / 1024 / 1024).toFixed(1)} MB
+                      </p>
+                      <Button
+                        onClick={(e) => deleteDocument(doc.id, doc.filename, e)}
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6 text-red-500 hover:text-red-700 dark:hover:text-red-400"
+                      >
+                        <X className="w-4 h-4" />
+                      </Button>
+                    </div>
                   </div>
                 ))
               )}
