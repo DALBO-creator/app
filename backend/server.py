@@ -242,7 +242,7 @@ async def create_pdf_export(content: str, title: str) -> str:
         return temp_file.name
     except Exception as e:
         logging.error(f"Error creating PDF: {e}")
-        raise HTTPException(status_code=500, f"Errore nella creazione del PDF: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Errore nella creazione del PDF: {str(e)}")
 
 # API Routes
 @api_router.post("/upload", response_model=dict)
