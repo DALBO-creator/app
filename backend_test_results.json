@@ -1,0 +1,81 @@
+{
+  "total_tests": 10,
+  "passed_tests": 10,
+  "failed_tests": 0,
+  "success_rate": 100.0,
+  "test_details": [
+    {
+      "test_name": "API Root",
+      "success": true,
+      "details": {
+        "message": "DocBrains API - Analisi Documenti con AI"
+      },
+      "error": "",
+      "timestamp": "2025-09-29T15:48:47.029231"
+    },
+    {
+      "test_name": "Get Documents (Empty)",
+      "success": true,
+      "details": "Found 1 documents",
+      "error": "",
+      "timestamp": "2025-09-29T15:48:47.070459"
+    },
+    {
+      "test_name": "File Upload",
+      "success": true,
+      "details": "Document ID: edf501e1-9e9c-41b6-83b7-34ecebb2a2cc, Text length: 931",
+      "error": "",
+      "timestamp": "2025-09-29T15:48:47.142114"
+    },
+    {
+      "test_name": "Get Document Details",
+      "success": true,
+      "details": "Filename: test_document.pdf, Text length: 931",
+      "error": "",
+      "timestamp": "2025-09-29T15:48:47.180001"
+    },
+    {
+      "test_name": "Generate Summary",
+      "success": true,
+      "details": "Summary generated, length: 2252 characters",
+      "error": "",
+      "timestamp": "2025-09-29T15:49:03.871548"
+    },
+    {
+      "test_name": "Generate Schema",
+      "success": true,
+      "details": "Schema generated, length: 1753 characters",
+      "error": "",
+      "timestamp": "2025-09-29T15:49:09.644558"
+    },
+    {
+      "test_name": "Chat Functionality",
+      "success": true,
+      "details": "Chat response length: 383 characters",
+      "error": "",
+      "timestamp": "2025-09-29T15:49:12.873797"
+    },
+    {
+      "test_name": "Export PDF",
+      "success": true,
+      "details": "PDF exported, size: 2070 bytes",
+      "error": "",
+      "timestamp": "2025-09-29T15:49:12.918795"
+    },
+    {
+      "test_name": "File Size Limit",
+      "success": true,
+      "details": "Status: 413",
+      "error": "",
+      "timestamp": "2025-09-29T15:49:13.352013"
+    },
+    {
+      "test_name": "Invalid File Type",
+      "success": true,
+      "details": "Status: 400",
+      "error": "",
+      "timestamp": "2025-09-29T15:49:13.402962"
+    }
+  ],
+  "uploaded_document_id": "edf501e1-9e9c-41b6-83b7-34ecebb2a2cc"
+}
