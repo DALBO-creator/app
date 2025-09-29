@@ -125,7 +125,7 @@ async def extract_text_with_gemini(file_path: str, mime_type: str) -> str:
         return response
     except Exception as e:
         logging.error(f"Error extracting text with Gemini: {e}")
-        raise HTTPException(status_code=500, f"Errore nell'estrazione del testo: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Errore nell'estrazione del testo: {str(e)}")
 
 async def generate_summary_with_gemini(text: str, summary_type: str, accuracy_level: str) -> str:
     try:
