@@ -25,6 +25,12 @@ from fastapi.responses import FileResponse
 import aiofiles
 import tempfile
 import json
+try:
+    from emergent_llm.llm_chats import LlmChat
+    from emergent_llm.schemas import UserMessage, FileContentWithMimeType
+except ImportError:
+    
+    pass 
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
