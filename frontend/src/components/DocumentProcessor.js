@@ -646,7 +646,7 @@ const DocumentProcessor = ({ darkMode, setDarkMode, apiEndpoint }) => {
       </div>
 
       {/* Chat Bot */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-6 right-6 z-[9999]">
         {isChatOpen ? (
           <Card className="w-80 h-96 shadow-2xl" data-testid="chat-widget">
             <CardHeader className="pb-3">
