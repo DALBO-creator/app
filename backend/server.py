@@ -166,7 +166,7 @@ Il riassunto deve:
         return response
     except Exception as e:
         logging.error(f"Error generating summary: {e}")
-        raise HTTPException(status_code=500, f"Errore nella generazione del riassunto: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Errore nella generazione del riassunto: {str(e)}")
 
 async def generate_schema_with_gemini(text: str, schema_type: str) -> str:
     try:
