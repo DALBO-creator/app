@@ -19,7 +19,6 @@ from reportlab.lib.utils import ImageReader
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
-from emergentintegrations.llm.chat import LlmChat, UserMessage, FileContentWithMimeType
 import asyncio
 from fastapi.responses import FileResponse
 import aiofiles
