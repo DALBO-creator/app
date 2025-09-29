@@ -199,7 +199,7 @@ Lo schema deve:
         return response
     except Exception as e:
         logging.error(f"Error generating schema: {e}")
-        raise HTTPException(status_code=500, f"Errore nella generazione dello schema: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Errore nella generazione dello schema: {str(e)}")
 
 async def create_pdf_export(content: str, title: str) -> str:
     """Crea un PDF da testo e ritorna il path del file"""
